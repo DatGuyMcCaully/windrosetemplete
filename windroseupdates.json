@@ -25,6 +25,18 @@
     "SkipOnFailure": false
   },
   {
+    "UpdateStageName": "UE4SS Download",
+    "UpdateSourcePlatform": "All",
+    "UpdateSource": "FetchURLFromJQ",
+    "UpdateSourceData": "https://api.github.com/repos/UE4SS-RE/RE-UE4SS/releases/tags/experimental-latest",
+    "UpdateSourceArgs": "$.assets[?(@.name =~ /^UE4SS_v(?!.*DEV).*[^.zip]$/)].browser_download_url",
+    "UpdateSourceTarget": "{{$FullBaseDir}}R5/Binaries/Win64",
+    "UnzipUpdateSource": true,
+    "OverwriteExistingFiles": true,
+    "DeleteAfterExtract": true,
+    "SkipOnFailure": false
+  },
+  {
     "UpdateStageName": "WindrosePlus Download",
     "UpdateSourcePlatform": "All",
     "UpdateSource": "FetchURLFromJQ",
