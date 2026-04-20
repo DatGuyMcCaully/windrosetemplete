@@ -25,7 +25,7 @@ Meta.ConfigVersion=1
 Meta.ReleaseNotes=
 Meta.BreakingReleaseNotes=
 Meta.AppConfigId=
-Meta.ImportableExtensions=[]
+Meta.ImportedExtensions=[]
 Meta.AppIsMultiIPAware=False
 
 App.DisplayName=Windrose
@@ -80,13 +80,14 @@ App.Compatibility=None
 App.SteamUpdateAnonymousLogin=True
 App.SteamForceLoginPrompt=False
 App.RapidStartup=False
-App.SmartExcludeExceptions=["*.cfg","*.con","*.config","*.ini","*.json","*.xml","*.properties","*.kvp","*.yml","*.yaml","*.toml","*.lua"]
+App.SmartExcludeExemptions=["*.cfg","*.con","*.config","*.ini","*.json","*.xml","*.properties","*.kvp","*.yml","*.yaml","*.toml","*.lua"]
 App.DumpFullChildProcessTree=False
 App.MonitorChildProcessName=
 App.MonitorDirectChildOnly=False
 App.SupportsUniversalSleep=False
-App.WakeUpMode=Any
+App.WakeupMode=Any
 App.ApplicationReadyMode=RegexpMatch
+App.TemplateMatchRegex={{^(?!(?:(?:Platform>)?(?:Linux|Windows|All)):)?(?:Value>)?\$[\w]+}}
 
 Console.FilterMatchRegex=
 Console.FilterMatchReplacement=
