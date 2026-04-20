@@ -18,16 +18,6 @@
     "SkipOnFailure": false
   },
   {
-    "UpdateStageName": "Default ServerDescription.json Download",
-    "UpdateSourcePlatform": "All",
-    "UpdateSource": "FetchURL",
-    "UpdateSourceData": "https://raw.githubusercontent.com/CubeCoders/AMPtemplates/main/windroseserverdescription.json",
-    "UpdateSourceTarget": "{{$FullBaseDir}}S1",
-    "UpdateSourceArgs": "ServerDescription.json",
-    "OverwriteExistingFiles": false,
-    "SkipOnFailure": false
-  },
-  {
     "UpdateStageName": "Initialise Wine",
     "UpdateSourcePlatform": "Linux",
     "UpdateSource": "Executable",
