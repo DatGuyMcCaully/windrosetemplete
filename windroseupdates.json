@@ -1,0 +1,58 @@
+[
+  {
+    "UpdateStageName": "Windrose Download",
+    "UpdateSourcePlatform": "All",
+    "UpdateSource": "SteamCMD",
+    "UpdateSourceData": "4129620",
+    "UpdateSourceArgs": "3041230",
+    "ForceDownloadPlatform": "Windows",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "SteamCMD Component Download",
+    "UpdateSourcePlatform": "All",
+    "UpdateSource": "SteamCMD",
+    "UpdateSourceData": "1007",
+    "UpdateSourceTarget": "{{$FullBaseDir}}R5/Binaries/Win64",
+    "ForceDownloadPlatform": "Windows",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Default ServerDescription.json Download",
+    "UpdateSourcePlatform": "All",
+    "UpdateSource": "FetchURL",
+    "UpdateSourceData": "https://raw.githubusercontent.com/CubeCoders/AMPtemplates/main/windroseserverdescription.json",
+    "UpdateSourceTarget": "{{$FullBaseDir}}S1",
+    "UpdateSourceArgs": "ServerDescription.json",
+    "OverwriteExistingFiles": false,
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Initialise Wine",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "/bin/bash",
+    "UpdateSourceArgs": "-c \"rm -rf \\\"{{$FullRootDir}}.wine\\\" > /dev/null 2>&1; WINEPREFIX=\\\"{{$FullRootDir}}.wine\\\" WINEARCH=win64 WINEDEBUG=-all /usr/bin/wineboot --init\"",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "WindrosePlus Download",
+    "UpdateSourcePlatform": "All",
+    "UpdateSource": "FetchURLFromJQ",
+    "UpdateSourceData": "https://api.github.com/repos/HumanGenome/WindrosePlus/releases/latest",
+    "UpdateSourceArgs": "$.assets[0].browser_download_url",
+    "UpdateSourceTarget": "{{$FullBaseDir}}",
+    "UnzipUpdateSource": true,
+    "OverwriteExistingFiles": true,
+    "DeleteAfterExtract": true,
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "WindrosePlus Install",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "/bin/bash",
+    "UpdateSourceArgs": "-c \"MODSDIR=\\\"{{$FullBaseDir}}R5/Binaries/Win64/ue4ss/Mods\\\"; mkdir -p \\\"$MODSDIR\\\"; grep -q 'WindrosePlus' \\\"$MODSDIR/mods.txt\\\" 2>/dev/null || echo 'WindrosePlus : 1' >> \\\"$MODSDIR/mods.txt\\\"\"",
+    "SkipOnFailure": true
+  }
+]
