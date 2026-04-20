@@ -1,45 +1,14 @@
 [
   {
-    "ConfigFile": "4129620/ServerDescription.json",
-    "ConfigType": "json",
-    "AutoMap": false,
-    "Importable": false,
-    "SettingMappings": {
-      "ServerName": "$.ServerName",
-      "MaxPlayers": "$.MaxPlayers",
-      "InviteCode": "$.InviteCode",
-      "IsPasswordProtected": "$.IsPasswordProtected",
-      "Password": "$.Password"
-    }
+    "ConfigFile": "R5/ServerDescription.json",
+    "AutoMap": true,
+    "Importable": true,
+    "ConfigType": "json"
   },
   {
-    "ConfigFile": "4129620/windrose_plus.json",
-    "ConfigType": "json",
-    "AutoMap": false,
+    "ConfigFile": "windrose_plus/windrose_plus.json",
+    "AutoMap": true,
     "Importable": false,
-    "SettingMappings": {
-      "WPRCONEnabled": "$.rcon.enabled",
-      "WPRCONPassword": "$.rcon.password",
-      "WPAdminSteamIDs": "$.admin_steam_ids",
-      "WPMapEnabled": "$.features.live_map",
-      "WPCPUOpt": "$.features.cpu_optimization",
-      "WPMultXP": "$.multipliers.xp",
-      "WPMultLoot": "$.multipliers.loot",
-      "WPMultStackSize": "$.multipliers.stack_size",
-      "WPMultCraftCost": "$.multipliers.craft_cost",
-      "WPMultCropSpeed": "$.multipliers.crop_speed",
-      "WPMultHarvestYield": "$.multipliers.harvest_yield",
-      "WPMultInventorySize": "$.multipliers.inventory_size",
-      "WPMultWeight": "$.multipliers.weight",
-      "WPMultPointsPerLevel": "$.multipliers.points_per_level"
-    }
-  },
-  {
-    "ConfigFile": "4129620/R5/Binaries/Win64/ue4ss/UE4SS-settings.ini",
-    "ConfigType": "ini",
-    "AutoMap": false,
-    "Importable": false,
-    "ConfigFormat": "{0} = {1}",
-    "ConfigFormatRegex": "^(?:(?<key>.+?)\\s*=\\s*(?<value>.*?)|(?:(?<key>.+?)\\s*=\\s*(?<value>.*?))$"
+    "ConfigType": "json"
   }
 ]

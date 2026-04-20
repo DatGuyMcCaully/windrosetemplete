@@ -1,0 +1,22 @@
+[
+  {
+    "UpdateStageName": "Windrose+ Pak Rebuild",
+    "UpdateSourcePlatform": "Windows",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "powershell.exe",
+    "UpdateSourceArgs": "-NoProfile -ExecutionPolicy Bypass -File \"{{$FullBaseDir}}windrose_plus/tools/WindrosePlus-BuildPak.ps1\" -ServerDir \"{{$FullBaseDir}}.\"",
+    "UpdateSourceConditionSetting": "InstallWindrosePlus",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": true
+  },
+  {
+    "UpdateStageName": "Windrose+ Pak Rebuild",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "/bin/bash",
+    "UpdateSourceArgs": "-c \"set -e; WINE=/usr/bin/wine; WINEPREFIX=\\\"{{$FullRootDir}}.wine\\\"; WINEARCH=win64; WINEDEBUG=-all; export WINEPREFIX WINEARCH WINEDEBUG; BASEDIR=\\\"{{$FullBaseDir}}\\\"; WINEBASE=\\\"{{$WineBaseDir}}\\\"; PAKSDIR=\\\"${BASEDIR}R5/Content/Paks\\\"; REPAK=\\\"${BASEDIR}windrose_plus/tools/bin/repak.exe\\\"; RETOC=\\\"${BASEDIR}windrose_plus/tools/bin/retoc.exe\\\"; WPJSON=\\\"${BASEDIR}windrose_plus/windrose_plus.json\\\"; OVERRIDES=\\\"${BASEDIR}windrose_plus/overrides\\\"; HASHFILE=\\\"${PAKSDIR}/.windroseplus_build.hash\\\"; GAMEPAK=\\\"${PAKSDIR}/pakchunk0-WindowsServer.pak\\\"; GAMEUTOC=\\\"${PAKSDIR}/pakchunk0-WindowsServer.utoc\\\"; if [[ ! -f \\\"$WPJSON\\\" ]]; then echo '[WindrosePlus] windrose_plus.json not found, skipping PAK rebuild'; exit 0; fi; HASCHANGED=0; python3 -c \\\"import json,sys; d=json.load(open('${BASEDIR}windrose_plus/windrose_plus.json')); m=d.get('multipliers',{}); sys.exit(0 if all(abs(v-1.0)<1e-6 for v in m.values()) else 1)\\\" 2>/dev/null && HASCHANGED=0 || HASCHANGED=1; if [[ $HASCHANGED -eq 0 ]]; then echo '[WindrosePlus] No multiplier overrides, skipping PAK rebuild'; exit 0; fi; CURHASH=$(cat \\\"$WPJSON\\\" | md5sum | cut -d' ' -f1); PREVHASH=$(cat \\\"$HASHFILE\\\" 2>/dev/null || echo ''); if [[ \\\"$CURHASH\\\" == \\\"$PREVHASH\\\" && -f \\\"${PAKSDIR}/WindrosePlus_Multipliers_P.pak\\\" ]]; then echo '[WindrosePlus] Config unchanged, skipping PAK rebuild'; exit 0; fi; echo '[WindrosePlus] Building Multipliers PAK...'; if [[ ! -d \\\"$OVERRIDES\\\" ]]; then mkdir -p \\\"$OVERRIDES\\\"; fi; $WINE \\\"$REPAK\\\" pack \\\"${WINEBASE}windrose_plus\\\\overrides\\\\\\\" \\\"${WINEBASE}R5\\\\Content\\\\Paks\\\\WindrosePlus_Multipliers_P.pak\\\" && echo '[WindrosePlus] Multipliers PAK built OK' || { echo '[WindrosePlus] repak failed'; exit 1; }; CTCACHE=\\\"${BASEDIR}windrose_plus/curvetable_cache\\\"; AESKEY=$(python3 -c \\\"import json; d=json.load(open('${BASEDIR}windrose_plus/windrose_plus.json')); print(d.get('aes_key',''))\\\" 2>/dev/null || echo ''); if [[ -n \\\"$AESKEY\\\" && -f \\\"$GAMEUTOC\\\" && -f \\\"$RETOC\\\" ]]; then if [[ ! -d \\\"$CTCACHE\\\" ]] || [[ \\\"$GAMEPAK\\\" -nt \\\"$CTCACHE\\\" ]]; then echo '[WindrosePlus] Extracting CurveTables with retoc (Wine)...'; rm -rf \\\"$CTCACHE\\\"; mkdir -p \\\"$CTCACHE\\\"; $WINE \\\"$RETOC\\\" -a \\\"$AESKEY\\\" to-legacy \\\"${WINEBASE}R5\\\\Content\\\\Paks\\\\pakchunk0-WindowsServer.utoc\\\" \\\"${WINEBASE}windrose_plus\\\\curvetable_cache\\\\\\\" && echo '[WindrosePlus] CurveTable extraction OK' || echo '[WindrosePlus] retoc extraction failed (non-fatal)'; fi; else echo '[WindrosePlus] Skipping CurveTable PAK (no AES key or retoc not available)'; fi; echo \\\"$CURHASH\\\" > \\\"$HASHFILE\\\"; echo '[WindrosePlus] PAK rebuild complete'\"",
+    "UpdateSourceConditionSetting": "InstallWindrosePlus",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": true
+  }
+]
