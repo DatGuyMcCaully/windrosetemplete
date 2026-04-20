@@ -1,9 +1,9 @@
-Meta.DisplayName=DatGuyMcCaully / Windrose
+Meta.DisplayName=Windrose
 Meta.Description=Windrose Dedicated Server with WindrosePlus mod (RCON, live map, admin commands, multipliers)
 Meta.OS=Windows, Linux
 Meta.ArchSupport=Unknown
 Meta.Arch=x86_64
-Meta.Author=Community
+Meta.Author=DatGuyMcCaully
 Meta.URL=https://playwindrose.com/
 Meta.DisplayImageSource=steam:3041230
 Meta.EndpointURLFormat=
