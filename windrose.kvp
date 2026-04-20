@@ -24,7 +24,7 @@ Meta.NoCommercialUsage=False
 Meta.ConfigVersion=1
 Meta.ReleaseNotes=
 Meta.BreakingReleaseNotes=
-Meta.AppConfigId=
+Meta.AppConfigId=4c3f17dd-7ece-4c18-bb8f-84f1882c359a
 Meta.ImportedExtensions=[]
 Meta.AppIsMultiIPAware=False
 
